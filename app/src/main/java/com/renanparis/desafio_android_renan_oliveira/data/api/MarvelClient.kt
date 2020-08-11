@@ -5,6 +5,6 @@ class MarvelClient(
     = RetrofitBuilder.service
 ) {
 
-    suspend fun getAllCharacters() = service.allCharacters()
+    suspend fun getAllCharacters(offset: Int = 0) = service.allCharacters(offset)
 
 }

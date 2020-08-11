@@ -8,5 +8,5 @@ import retrofit2.http.Query
 interface MarvelService {
 
     @GET("characters")
-   suspend fun allCharacters(@Query("offset")offset: Int? = 0): Response<List<Character>>
+   suspend fun allCharacters(@Query("offset")offset: Int? = 0): Response<MutableList<Character>>
 }
