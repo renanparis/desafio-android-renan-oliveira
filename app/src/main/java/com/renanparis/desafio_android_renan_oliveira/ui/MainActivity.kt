@@ -1,7 +1,8 @@
-package com.renanparis.desafio_android_renan_oliveira
+package com.renanparis.desafio_android_renan_oliveira.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.renanparis.desafio_android_renan_oliveira.R
 
 class MainActivity : AppCompatActivity() {
 
