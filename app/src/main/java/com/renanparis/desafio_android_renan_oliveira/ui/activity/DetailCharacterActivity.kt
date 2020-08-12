@@ -1,12 +1,13 @@
 package com.renanparis.desafio_android_renan_oliveira.ui.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import com.renanparis.desafio_android_renan_oliveira.R
-import com.renanparis.desafio_android_renan_oliveira.data.model.Character
+import com.renanparis.desafio_android_renan_oliveira.data.model.character.Character
 import com.renanparis.desafio_android_renan_oliveira.extensions.setImage
 import kotlinx.android.synthetic.main.activity_detail_character.*
 
@@ -39,5 +40,14 @@ class DetailCharacterActivity : AppCompatActivity() {
         name = character_detail_name
         description = character_detail_description
         button = character_detail_button
+        configButtonClick()
+    }
+
+    private fun configButtonClick() {
+        button.setOnClickListener {
+            val intent = Intent(this, ComicActivity::class.java)
+            intent.putExtra("idCharacter", character?.id)
+            startActivity(intent)
+        }
     }
 }

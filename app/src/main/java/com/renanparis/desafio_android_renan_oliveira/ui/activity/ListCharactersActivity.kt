@@ -6,7 +6,7 @@ import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.renanparis.desafio_android_renan_oliveira.R
-import com.renanparis.desafio_android_renan_oliveira.data.model.Character
+import com.renanparis.desafio_android_renan_oliveira.data.model.character.Character
 import com.renanparis.desafio_android_renan_oliveira.ui.adapter.ListCharactersAdapter
 import com.renanparis.desafio_android_renan_oliveira.ui.viewmodel.ListCharactersViewModel
 import kotlinx.android.synthetic.main.activity_list_characters.*

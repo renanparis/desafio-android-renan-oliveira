@@ -7,7 +7,7 @@ import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.renanparis.desafio_android_renan_oliveira.R
-import com.renanparis.desafio_android_renan_oliveira.data.model.Character
+import com.renanparis.desafio_android_renan_oliveira.data.model.character.Character
 import com.renanparis.desafio_android_renan_oliveira.extensions.setImage
 import kotlinx.android.synthetic.main.item_list_characters.view.*
 

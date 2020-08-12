@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
-import com.renanparis.desafio_android_renan_oliveira.data.model.Character
+import com.renanparis.desafio_android_renan_oliveira.data.model.character.Character
 import com.renanparis.desafio_android_renan_oliveira.data.pagination.CharactersDataSourceFactory
 import com.renanparis.desafio_android_renan_oliveira.data.repository.MarvelRepository
 

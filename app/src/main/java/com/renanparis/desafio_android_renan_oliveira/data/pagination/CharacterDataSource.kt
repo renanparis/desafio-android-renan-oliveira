@@ -2,7 +2,7 @@ package com.renanparis.desafio_android_renan_oliveira.data.pagination
 
 import android.util.Log
 import androidx.paging.PageKeyedDataSource
-import com.renanparis.desafio_android_renan_oliveira.data.model.Character
+import com.renanparis.desafio_android_renan_oliveira.data.model.character.Character
 import com.renanparis.desafio_android_renan_oliveira.data.repository.MarvelRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.cancel
