@@ -7,4 +7,6 @@ class MarvelClient(
 
     suspend fun getAllCharacters(offset: Int = 0) = service.allCharacters(offset)
 
+    suspend fun getAllComics(id: Int) = service.allComics(id)
+
 }
