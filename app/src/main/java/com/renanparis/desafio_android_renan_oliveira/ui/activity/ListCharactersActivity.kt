@@ -1,10 +1,12 @@
 package com.renanparis.desafio_android_renan_oliveira.ui.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.renanparis.desafio_android_renan_oliveira.R
+import com.renanparis.desafio_android_renan_oliveira.data.model.Character
 import com.renanparis.desafio_android_renan_oliveira.ui.adapter.ListCharactersAdapter
 import com.renanparis.desafio_android_renan_oliveira.ui.viewmodel.ListCharactersViewModel
 import kotlinx.android.synthetic.main.activity_list_characters.*
@@ -33,5 +35,19 @@ class ListCharactersActivity : AppCompatActivity() {
         val lm = LinearLayoutManager(this)
         rv_list_characters.layoutManager = lm
         rv_list_characters.adapter = adapter
+        configClick()
+    }
+
+    private fun configClick() {
+        adapter.onItemClickListener = {character ->
+            showDetailCharacter(character)
+        }
+    }
+    private fun showDetailCharacter(character: Character?) {
+        val intent = Intent(this, DetailCharacterActivity::class.java)
+        character?.let {
+            intent.putExtra("character", it)
+        }
+        startActivity(intent)
     }
 }
