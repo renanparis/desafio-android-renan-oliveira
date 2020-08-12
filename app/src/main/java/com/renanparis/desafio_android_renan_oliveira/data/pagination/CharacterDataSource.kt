@@ -38,19 +38,19 @@ class CharacterDataSource(
         scope.launch {
             try {
                 val response = repository.getAllCharacters(requestedPage * requestLoadSize)
-                when {
-                    response.isSuccessful -> {
-                        response.body()?.let { initCallback?.onResult(it, null, adjacentPage) }
-                        response.body()?.let { callback?.onResult(it, adjacentPage) }
-                    }
-                }
+                initCallback?.onResult(
+                    response.data.results as MutableList<Character>,
+                    null,
+                    adjacentPage
+                )
+                callback?.onResult(response.data.results as MutableList<Character>, adjacentPage)
             } catch (e: Exception) {
                 Log.e("Error Api", e.message ?: "Não foi possivel Pegar erro")
             }
         }
     }
 
-   override fun invalidate() {
+    override fun invalidate() {
         super.invalidate()
         scope.cancel()
     }

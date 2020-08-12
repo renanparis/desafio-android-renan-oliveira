@@ -1,5 +1,6 @@
 package com.renanparis.desafio_android_renan_oliveira.data.api
 
+import com.google.gson.GsonBuilder
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.renanparis.desafio_android_renan_oliveira.data.api.Constants.API_KEY
 import com.renanparis.desafio_android_renan_oliveira.data.api.Constants.PRIVATE_KEY
@@ -38,9 +39,10 @@ object RetrofitBuilder {
     }
 
     private fun getRetrofit(): Retrofit {
+        val gson = GsonBuilder().setLenient().create()
         return Retrofit.Builder()
             .baseUrl(URL)
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .client(getClient())
             .build()
