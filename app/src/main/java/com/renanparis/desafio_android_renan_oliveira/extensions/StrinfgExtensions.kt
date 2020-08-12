@@ -12,10 +12,9 @@ fun String.md5(): String {
         val hex = StringBuilder()
         for (mDigest in messageDigest) {
             var h = Integer.toHexString(0xFF and mDigest.toInt())
-            while (h.length < 2) {
+            while (h.length < 2)
                 h = "0$h"
                 hex.append(h)
-            }
         }
         return hex.toString()
     } catch (e: NoSuchAlgorithmException) {

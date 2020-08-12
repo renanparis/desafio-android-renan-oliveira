@@ -27,7 +27,7 @@ object RetrofitBuilder {
             val ts = (Calendar.getInstance(TimeZone.getTimeZone("UTC")).timeInMillis / 1000L).toString()
 
             val url = originalHttpUrl.newBuilder()
-                .addQueryParameter("apiKey", API_KEY)
+                .addQueryParameter("apikey", API_KEY)
                 .addQueryParameter("ts", ts)
                 .addQueryParameter("hash", "$ts$PRIVATE_KEY$API_KEY".md5())
                 .build()

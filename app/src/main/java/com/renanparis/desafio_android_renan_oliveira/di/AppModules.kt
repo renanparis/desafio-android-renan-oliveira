@@ -7,7 +7,6 @@ import com.renanparis.desafio_android_renan_oliveira.ui.viewmodel.ListCharacters
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
-
 val uiModule = module {
     factory<ListCharactersAdapter> { ListCharactersAdapter() }
 }
