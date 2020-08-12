@@ -37,8 +37,7 @@ class ListCharactersAdapter : PagedListAdapter<Character, ListCharactersAdapter.
         fun bind(character: Character?) {
             character?.let { this.character = it }
             nameText.text = this.character.name
-            image.setImage(this.character.thumbnail.path)
-
+            image.setImage("${character?.thumbnail?.path}/standard_medium.${character?.thumbnail?.extension}")
         }
 
     }

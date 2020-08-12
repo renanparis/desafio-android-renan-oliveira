@@ -2,8 +2,7 @@ package com.renanparis.desafio_android_renan_oliveira.data.api
 
 import com.google.gson.GsonBuilder
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
-import com.renanparis.desafio_android_renan_oliveira.data.api.Constants.API_KEY
-import com.renanparis.desafio_android_renan_oliveira.data.api.Constants.PRIVATE_KEY
+import com.renanparis.desafio_android_renan_oliveira.BuildConfig
 import com.renanparis.desafio_android_renan_oliveira.extensions.md5
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -28,14 +27,15 @@ object RetrofitBuilder {
             val ts = (Calendar.getInstance(TimeZone.getTimeZone("UTC")).timeInMillis / 1000L).toString()
 
             val url = originalHttpUrl.newBuilder()
-                .addQueryParameter("apikey", API_KEY)
+                .addQueryParameter("apikey", BuildConfig.Apikey)
                 .addQueryParameter("ts", ts)
-                .addQueryParameter("hash", "$ts$PRIVATE_KEY$API_KEY".md5())
+                .addQueryParameter("hash", "$ts${BuildConfig.PrivateKey}${BuildConfig.Apikey}".md5())
                 .build()
 
             chain.proceed(original.newBuilder().url(url).build())
         }
         return httpClient.build()
+
     }
 
     private fun getRetrofit(): Retrofit {
