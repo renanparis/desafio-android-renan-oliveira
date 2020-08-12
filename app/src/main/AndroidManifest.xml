@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.activity.DetailCharacterActivity"></activity>
+        <activity android:name=".ui.activity.ComicActivity"></activity>
+        <activity android:name=".ui.activity.DetailCharacterActivity" />
         <activity android:name=".ui.activity.ListCharactersActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

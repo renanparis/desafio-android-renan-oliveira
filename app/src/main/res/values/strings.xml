@@ -2,4 +2,5 @@
     <string name="app_name">desafio-android-renan-oliveira</string>
     <string name="image_character">Imagem do personagem da marvel</string>
     <string name="image_detail">Imagem do persogem</string>
+    <string name="comic_image">Imagem da revista</string>
 </resources>
