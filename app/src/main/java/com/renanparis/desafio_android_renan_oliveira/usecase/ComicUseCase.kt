@@ -1,46 +1,39 @@
 package com.renanparis.desafio_android_renan_oliveira.usecase
 
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.liveData
 import com.renanparis.desafio_android_renan_oliveira.data.model.comic.Comic
-import com.renanparis.desafio_android_renan_oliveira.data.model.comic.ComicResponse
 import com.renanparis.desafio_android_renan_oliveira.data.repository.MarvelRepository
 import com.renanparis.desafio_android_renan_oliveira.utils.Resource
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 class ComicUseCase(private val repository: MarvelRepository) {
 
-    fun getComic(id: Int): MutableLiveData<Resource<Comic>> {
-        val response = MutableLiveData<Resource<Comic>>()
-        CoroutineScope(Dispatchers.IO).launch {
-            try {
-                val expensiveComic = getExpensiveComic(repository.getAllComics(id))
-                expensiveComic?.let {
-                    response.value = Resource.success(data = it)
-                }
-            } catch (e: Exception) {
-                response.value = Resource.error(data = null, message = e.message ?: "Erro Api")
-            }
-        }
-        return response
+    fun getComic(id: Int) = liveData(Dispatchers.IO) {
+        emit(getExpensiveComic(id))
     }
 
-    private fun getExpensiveComic(allComics: ComicResponse): Comic? {
+    private suspend fun getLisComics(id: Int): List<Comic> {
+        return repository.getAllComics(id).data.results
+    }
 
-        val listComics = allComics.data.results
-        var comicExpensive: Comic? = null
-        var firstPrice: Float = 0.0F
-        for (comic in listComics) {
-            var listPrice = comic.prices
-            var maxPrice: Float? = listPrice.maxBy { it.price }?.price
-            maxPrice?.let {
-                if (it > firstPrice) {
-                    comicExpensive = comic
-                    firstPrice = it
+    private suspend fun getExpensiveComic(id: Int): Resource<Comic?> {
+        return try {
+            val listComics = getLisComics(id)
+            var comicExpensive: Comic? = null
+            var firstPrice: Float = 0.0F
+            for (comic in listComics) {
+                var listPrice = comic.prices
+                var maxPrice: Float? = listPrice.maxBy { it.price }?.price
+                maxPrice?.let {
+                    if (it > firstPrice) {
+                        comicExpensive = comic
+                        firstPrice = it
+                    }
                 }
             }
+            Resource.success(data = comicExpensive)
+        }catch (e: java.lang.Exception) {
+            Resource.error(data = null, message = e.message.toString())
         }
-            return comicExpensive
     }
 }

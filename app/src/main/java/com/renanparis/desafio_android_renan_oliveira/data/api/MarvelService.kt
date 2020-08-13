@@ -9,8 +9,8 @@ import retrofit2.http.Query
 interface MarvelService {
 
     @GET("characters")
-   suspend fun allCharacters(@Query("offset")offset: Int? = 0): CharacterResponse
+    suspend fun allCharacters(@Query("offset") offset: Int? = 0): CharacterResponse
 
-    @GET("characters/{characterId}/comics")
-   suspend fun allComics(@Path("charactersId")id: Int): ComicResponse
+    @GET("characters/{charactersId}/comics")
+    suspend fun allComics(@Path("charactersId") id: Int): ComicResponse
 }
