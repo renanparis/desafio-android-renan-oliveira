@@ -8,6 +8,8 @@ import androidx.paging.PagedList
 import com.renanparis.desafio_android_renan_oliveira.data.model.character.Character
 import com.renanparis.desafio_android_renan_oliveira.data.pagination.CharactersDataSourceFactory
 import com.renanparis.desafio_android_renan_oliveira.data.repository.MarvelRepository
+import com.renanparis.desafio_android_renan_oliveira.utils.Resource
+import java.lang.Exception
 
 class ListCharactersViewModel(repository: MarvelRepository) : ViewModel() {
 
@@ -15,16 +17,15 @@ class ListCharactersViewModel(repository: MarvelRepository) : ViewModel() {
     private var listCharacters: LiveData<PagedList<Character>>
 
     init {
-        val dataSourceFactory = CharactersDataSourceFactory(repository, viewModelScope)
-        val config = PagedList.Config.Builder()
-            .setPageSize(pageSize)
-            .setInitialLoadSizeHint(pageSize * 2)
-            .setPrefetchDistance(2)
-            .setEnablePlaceholders(false)
-            .build()
+            val dataSourceFactory = CharactersDataSourceFactory(repository, viewModelScope)
+            val config = PagedList.Config.Builder()
+                .setPageSize(pageSize)
+                .setInitialLoadSizeHint(pageSize * 2)
+                .setPrefetchDistance(2)
+                .setEnablePlaceholders(false)
+                .build()
 
-        this.listCharacters = LivePagedListBuilder<Int, Character>(dataSourceFactory, config).build()
+            this.listCharacters = LivePagedListBuilder<Int, Character>(dataSourceFactory, config).build()
     }
-
     fun getAllCharacter() = listCharacters
 }

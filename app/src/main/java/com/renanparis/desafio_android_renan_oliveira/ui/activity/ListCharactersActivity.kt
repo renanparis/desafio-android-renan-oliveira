@@ -1,12 +1,14 @@
 package com.renanparis.desafio_android_renan_oliveira.ui.activity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.renanparis.desafio_android_renan_oliveira.R
 import com.renanparis.desafio_android_renan_oliveira.data.model.character.Character
+import com.renanparis.desafio_android_renan_oliveira.ui.activity.extensions.showDialogItemNotFound
 import com.renanparis.desafio_android_renan_oliveira.ui.adapter.ListCharactersAdapter
 import com.renanparis.desafio_android_renan_oliveira.ui.viewmodel.ListCharactersViewModel
 import kotlinx.android.synthetic.main.activity_list_characters.*
@@ -23,12 +25,16 @@ class ListCharactersActivity : AppCompatActivity() {
         setContentView(R.layout.activity_list_characters)
         initAdapter()
         showListCharacters()
-
     }
 
     private fun showListCharacters() {
-        viewModel.getAllCharacter().observe(this, Observer {
-            adapter.submitList(it)
+        viewModel.getAllCharacter().observe(this, Observer { pagedList ->
+            list_characters_progressbar.visibility = View.VISIBLE
+            if (pagedList == null) {
+                showDialogItemNotFound()
+            }
+            adapter.submitList(pagedList)
+            list_characters_progressbar.visibility = View.GONE
         })
     }
     private fun initAdapter() {
@@ -37,12 +43,12 @@ class ListCharactersActivity : AppCompatActivity() {
         rv_list_characters.adapter = adapter
         configClick()
     }
-
     private fun configClick() {
-        adapter.onItemClickListener = {character ->
+        adapter.onItemClickListener = { character ->
             showDetailCharacter(character)
         }
     }
+
     private fun showDetailCharacter(character: Character?) {
         val intent = Intent(this, DetailCharacterActivity::class.java)
         character?.let {
@@ -51,3 +57,4 @@ class ListCharactersActivity : AppCompatActivity() {
         startActivity(intent)
     }
 }
+

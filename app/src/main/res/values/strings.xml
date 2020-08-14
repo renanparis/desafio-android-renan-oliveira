@@ -5,4 +5,5 @@
     <string name="comic_image">Imagem da revista</string>
     <string name="name_button_warning_dialog">Ok</string>
     <string name="message_warning_dialog">Não foi possível carregar as informações. Por favor, verifique a conexão ou tente mais tarde.</string>
+    <string name="back_home">Voltar para Home</string>
 </resources>

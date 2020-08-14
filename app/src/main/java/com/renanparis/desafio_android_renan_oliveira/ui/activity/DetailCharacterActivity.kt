@@ -9,13 +9,12 @@ import android.widget.TextView
 import com.renanparis.desafio_android_renan_oliveira.R
 import com.renanparis.desafio_android_renan_oliveira.data.model.character.Character
 import com.renanparis.desafio_android_renan_oliveira.extensions.setImage
+import com.renanparis.desafio_android_renan_oliveira.ui.activity.extensions.showDialogItemNotFound
 import kotlinx.android.synthetic.main.activity_detail_character.*
 
 class DetailCharacterActivity : AppCompatActivity() {
 
-    private val character: Character? by lazy {
-        intent.getParcelableExtra<Character>("character")
-    }
+    private lateinit var character: Character
     private lateinit var image: ImageView
     private lateinit var name: TextView
     private lateinit var description: TextView
@@ -24,9 +23,16 @@ class DetailCharacterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_character)
+        hasExtras()
         initViews()
         setViews()
+    }
 
+    private fun hasExtras() {
+        character = intent.getParcelableExtra("character")
+        if (character == null) {
+            showDialogItemNotFound()
+        }
     }
 
     private fun setViews() {
