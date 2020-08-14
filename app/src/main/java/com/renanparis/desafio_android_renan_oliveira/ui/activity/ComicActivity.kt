@@ -22,7 +22,7 @@ class ComicActivity : AppCompatActivity() {
 
     private val viewModel: ComicViewModel by viewModel()
     private val id: Int by lazy {
-        intent.getIntExtra("idCharacter", 0)
+        intent.getIntExtra(KEY_EXTRAS_ID, KEY_DEFAULT_VALUE)
     }
     private lateinit var imageImageView: ImageView
     private lateinit var titleText: TextView
@@ -32,6 +32,7 @@ class ComicActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_comic)
+        title = TITLE_TOOLBAR
         initViews()
         showComic()
     }
@@ -53,7 +54,7 @@ class ComicActivity : AppCompatActivity() {
         startActivity(Intent(this, ListCharactersActivity::class.java))
         finish()
     }
-    
+
     private fun showComic() {
         viewModel.getExpensiveComic(id).observe(this, Observer { resources ->
             when (resources.status) {
@@ -85,5 +86,11 @@ class ComicActivity : AppCompatActivity() {
         titleText = comic_name
         descriptionText = comic_description
         priceText = comic_price
+    }
+
+    companion object {
+        private const val TITLE_TOOLBAR = "Comic"
+        private const val KEY_EXTRAS_ID = "idCharacter"
+        private const val KEY_DEFAULT_VALUE = 0
     }
 }

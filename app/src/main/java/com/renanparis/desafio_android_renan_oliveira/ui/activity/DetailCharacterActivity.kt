@@ -22,6 +22,7 @@ class DetailCharacterActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        title = TITLE_TOOLBAR
         setContentView(R.layout.activity_detail_character)
         hasExtras()
         initViews()
@@ -29,16 +30,16 @@ class DetailCharacterActivity : AppCompatActivity() {
     }
 
     private fun hasExtras() {
-        character = intent.getParcelableExtra("character")
+        character = intent.getParcelableExtra(KEY_EXTRAS_CHARACTER)
         if (character == null) {
             showDialogItemNotFound()
         }
     }
 
     private fun setViews() {
-        image.setImage("${character?.thumbnail?.path}/standard_medium.${character?.thumbnail?.extension}")
-        name.text = character?.name
-        description.text = character?.description
+        image.setImage("${character.thumbnail.path}/standard_medium.${character.thumbnail.extension}")
+        name.text = character.name
+        description.text = character.description
     }
 
     private fun initViews() {
@@ -52,8 +53,15 @@ class DetailCharacterActivity : AppCompatActivity() {
     private fun configButtonClick() {
         button.setOnClickListener {
             val intent = Intent(this, ComicActivity::class.java)
-            intent.putExtra("idCharacter", character?.id)
+            intent.putExtra(KEY_EXTRAS_ID, character.id)
             startActivity(intent)
         }
     }
+
+    companion object {
+        private const val KEY_EXTRAS_CHARACTER= "character"
+        private const val TITLE_TOOLBAR = "Character"
+        private const val KEY_EXTRAS_ID = "idCharacter"
+    }
 }
+

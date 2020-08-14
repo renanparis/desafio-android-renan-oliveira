@@ -22,6 +22,7 @@ class ListCharactersActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        title = TITLE_TOOLBAR
         setContentView(R.layout.activity_list_characters)
         initAdapter()
         showListCharacters()
@@ -52,9 +53,14 @@ class ListCharactersActivity : AppCompatActivity() {
     private fun showDetailCharacter(character: Character?) {
         val intent = Intent(this, DetailCharacterActivity::class.java)
         character?.let {
-            intent.putExtra("character", it)
+            intent.putExtra(KEY_EXTRAS, it)
         }
         startActivity(intent)
+    }
+
+    companion object {
+        private const val KEY_EXTRAS = "character"
+        private const val TITLE_TOOLBAR = "List Characters"
     }
 }
 
