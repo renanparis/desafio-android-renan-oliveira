@@ -45,7 +45,7 @@ class CharacterDataSource(
                 )
                 callback?.onResult(response.data.results as MutableList<Character>, adjacentPage)
             } catch (e: Exception) {
-                Log.e("Error Api", e.message ?: "Não foi possivel Pegar erro")
+                Log.e( TAG_ERROR, e.message ?: MESSAGE_ERROR)
             }
         }
     }
@@ -53,5 +53,10 @@ class CharacterDataSource(
     override fun invalidate() {
         super.invalidate()
         scope.cancel()
+    }
+
+    companion object {
+        private const val MESSAGE_ERROR = "Não foi possivel Pegar erro"
+        private const val TAG_ERROR = "Error Api"
     }
 }

@@ -11,11 +11,13 @@ import com.renanparis.desafio_android_renan_oliveira.data.model.character.Charac
 import com.renanparis.desafio_android_renan_oliveira.ui.activity.extensions.showDialogItemNotFound
 import com.renanparis.desafio_android_renan_oliveira.ui.adapter.ListCharactersAdapter
 import com.renanparis.desafio_android_renan_oliveira.ui.viewmodel.ListCharactersViewModel
+import com.treebo.internetavailabilitychecker.InternetAvailabilityChecker
+import com.treebo.internetavailabilitychecker.InternetConnectivityListener
 import kotlinx.android.synthetic.main.activity_list_characters.*
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class ListCharactersActivity : AppCompatActivity() {
+class ListCharactersActivity : AppCompatActivity(), InternetConnectivityListener {
 
     private val viewModel: ListCharactersViewModel by viewModel()
     private val adapter: ListCharactersAdapter by inject()
@@ -26,6 +28,13 @@ class ListCharactersActivity : AppCompatActivity() {
         setContentView(R.layout.activity_list_characters)
         initAdapter()
         showListCharacters()
+        initConnectionListener()
+    }
+
+    private fun initConnectionListener() {
+        InternetAvailabilityChecker.init(this);
+        val mInternetAvailabilityChecker = InternetAvailabilityChecker.getInstance();
+        mInternetAvailabilityChecker.addInternetConnectivityListener(this);
     }
 
     private fun showListCharacters() {
@@ -56,6 +65,12 @@ class ListCharactersActivity : AppCompatActivity() {
             intent.putExtra(KEY_EXTRAS, it)
         }
         startActivity(intent)
+    }
+
+    override fun onInternetConnectivityChanged(isConnected: Boolean) {
+        if (isConnected) {
+            showListCharacters()
+        }
     }
 
     companion object {
