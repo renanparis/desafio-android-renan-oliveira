@@ -39,7 +39,14 @@ class DetailCharacterActivity : AppCompatActivity() {
     private fun setViews() {
         image.setImage("${character.thumbnail.path}/standard_medium.${character.thumbnail.extension}")
         name.text = character.name
-        description.text = character.description
+        description.text = setDescription()
+    }
+
+    private fun setDescription(): String {
+        if (character.description.isEmpty()) {
+            return this.getString(R.string.text_default_description)
+        }
+       return character.description
     }
 
     private fun initViews() {

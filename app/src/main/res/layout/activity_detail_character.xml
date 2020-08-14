@@ -8,12 +8,13 @@
 
     <ImageView
         android:id="@+id/character_detail_image"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:contentDescription="@string/image_detail"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/character_detail_name"
+        android:layout_marginTop="16dp">
     </ImageView>
 
 
@@ -22,19 +23,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
+        android:textSize="28sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/character_detail_image"
-        android:textSize="20sp">
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="48dp"
+        android:textStyle="bold">
     </TextView>
 
     <TextView
         android:id="@+id/character_detail_description"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/character_detail_name"
-        android:textSize="16sp">
+        app:layout_constraintTop_toBottomOf="@+id/character_detail_image"
+        android:textSize="20sp"
+        android:maxLines="3"
+        android:ellipsize="end"
+        android:textColor="@color/colorPrimaryDark"
+        android:textAlignment="center"
+        android:layout_margin="16dp"
+        android:padding="8dp">
     </TextView>
 
     <Button
@@ -43,11 +53,14 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/character_detail_name"
         app:layout_constraintBottom_toBottomOf="parent"
         android:textSize="16sp"
         android:textAlignment="center"
-        android:text="Comics">
+        android:text="@string/title_button"
+        android:background="@drawable/shape_button_comic"
+        android:layout_margin="16dp"
+        android:padding="4dp"
+        android:textColor="@android:color/white">
     </Button>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
