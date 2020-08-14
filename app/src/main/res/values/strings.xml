@@ -3,4 +3,6 @@
     <string name="image_character">Imagem do personagem da marvel</string>
     <string name="image_detail">Imagem do persogem</string>
     <string name="comic_image">Imagem da revista</string>
+    <string name="name_button_warning_dialog">Ok</string>
+    <string name="message_warning_dialog">Não foi possível carregar as informações. Por favor, verifique a conexão ou tente mais tarde.</string>
 </resources>

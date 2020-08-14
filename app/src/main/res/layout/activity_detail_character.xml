@@ -49,4 +49,5 @@
         android:textAlignment="center"
         android:text="Comics">
     </Button>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
