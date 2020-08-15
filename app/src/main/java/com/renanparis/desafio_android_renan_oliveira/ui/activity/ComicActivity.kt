@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.renanparis.desafio_android_renan_oliveira.R
 import com.renanparis.desafio_android_renan_oliveira.data.model.comic.Comic
+import com.renanparis.desafio_android_renan_oliveira.extensions.formatCurrency
 import com.renanparis.desafio_android_renan_oliveira.extensions.setImage
 import com.renanparis.desafio_android_renan_oliveira.ui.activity.extensions.showDialogItemNotFound
 import com.renanparis.desafio_android_renan_oliveira.ui.viewmodel.ComicViewModel
@@ -28,6 +29,7 @@ class ComicActivity : AppCompatActivity() {
     private lateinit var titleText: TextView
     private lateinit var descriptionText: TextView
     private lateinit var priceText: TextView
+    private lateinit var titlePriceText: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,7 +53,9 @@ class ComicActivity : AppCompatActivity() {
     }
 
     private fun backToHome() {
-        startActivity(Intent(this, ListCharactersActivity::class.java))
+        val intent = Intent(this, ListCharactersActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        startActivity(intent)
         finish()
     }
 
@@ -78,7 +82,8 @@ class ComicActivity : AppCompatActivity() {
         imageImageView.setImage("${data?.thumbnail?.path}/standard_medium.${data?.thumbnail?.extension}")
         titleText.text = data?.title
         descriptionText.text = data?.description
-        priceText.text = data?.prices?.maxBy { it.price }?.price.toString()
+        priceText.text = data?.prices?.maxBy { it.price }?.price?.formatCurrency()
+        titlePriceText.visibility = View.VISIBLE
     }
 
     private fun initViews() {
@@ -86,6 +91,8 @@ class ComicActivity : AppCompatActivity() {
         titleText = comic_name
         descriptionText = comic_description
         priceText = comic_price
+        titlePriceText = comic_title_price
+
     }
 
     companion object {
