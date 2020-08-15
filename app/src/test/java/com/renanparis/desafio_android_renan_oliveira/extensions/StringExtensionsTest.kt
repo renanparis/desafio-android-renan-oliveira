@@ -3,7 +3,7 @@ package com.renanparis.desafio_android_renan_oliveira.extensions
 import junit.framework.Assert.assertEquals
 import org.junit.Test
 
-class StringExtensions {
+class StringExtensionsTest {
 
     @Test
     fun should_returnHash_whenStringKey() {
