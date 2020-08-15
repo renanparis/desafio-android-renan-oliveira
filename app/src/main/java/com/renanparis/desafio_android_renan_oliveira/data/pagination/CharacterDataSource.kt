@@ -7,7 +7,6 @@ import com.renanparis.desafio_android_renan_oliveira.data.repository.MarvelRepos
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
-import java.lang.Exception
 
 class CharacterDataSource(
     private val repository: MarvelRepository,

@@ -8,7 +8,6 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.renanparis.desafio_android_renan_oliveira.R
 import com.renanparis.desafio_android_renan_oliveira.data.model.character.Character
-import com.renanparis.desafio_android_renan_oliveira.ui.activity.extensions.showDialogItemNotFound
 import com.renanparis.desafio_android_renan_oliveira.ui.adapter.ListCharactersAdapter
 import com.renanparis.desafio_android_renan_oliveira.ui.viewmodel.ListCharactersViewModel
 import com.treebo.internetavailabilitychecker.InternetAvailabilityChecker
@@ -40,8 +39,6 @@ class ListCharactersActivity : AppCompatActivity(), InternetConnectivityListener
     private fun showListCharacters() {
         viewModel.getAllCharacter().observe(this, Observer { pagedList ->
             list_characters_progressbar.visibility = View.VISIBLE
-           pagedList.isEmpty()
-            pagedList.size
             adapter.submitList(pagedList)
             list_characters_progressbar.visibility = View.GONE
         })
