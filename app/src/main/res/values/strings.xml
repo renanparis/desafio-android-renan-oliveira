@@ -8,4 +8,5 @@
     <string name="back_home">Voltar para Home</string>
     <string name="title_button">Comics</string>
     <string name="text_default_description">No description</string>
+    <string name="comic_title_price">Price:</string>
 </resources>
