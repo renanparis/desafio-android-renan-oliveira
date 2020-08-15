@@ -8,8 +8,6 @@ import androidx.paging.PagedList
 import com.renanparis.desafio_android_renan_oliveira.data.model.character.Character
 import com.renanparis.desafio_android_renan_oliveira.data.pagination.CharactersDataSourceFactory
 import com.renanparis.desafio_android_renan_oliveira.data.repository.MarvelRepository
-import com.renanparis.desafio_android_renan_oliveira.utils.Resource
-import java.lang.Exception
 
 class ListCharactersViewModel(repository: MarvelRepository) : ViewModel() {
 
