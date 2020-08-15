@@ -6,5 +6,5 @@ import java.util.*
 fun Float.formatCurrency() : String {
 
     return NumberFormat.getCurrencyInstance(
-        Locale("en", "US")).format(this)
+        Locale("en", "US")).format(this) ?: ""
 }

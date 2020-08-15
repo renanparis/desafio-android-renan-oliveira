@@ -67,6 +67,10 @@ class ComicActivity : AppCompatActivity() {
                     comics_progressbar.visibility = View.VISIBLE
                 }
                 Status.SUCCESS -> {
+                    if (resources.data == null) {
+                        showDialogItemNotFound()
+                        return@Observer
+                    }
                     setViews(resources.data)
                     comics_progressbar.visibility = View.GONE
                 }

@@ -40,9 +40,8 @@ class ListCharactersActivity : AppCompatActivity(), InternetConnectivityListener
     private fun showListCharacters() {
         viewModel.getAllCharacter().observe(this, Observer { pagedList ->
             list_characters_progressbar.visibility = View.VISIBLE
-            if (pagedList.dataSource.isInvalid) {
-                showDialogItemNotFound()
-            }
+           pagedList.isEmpty()
+            pagedList.size
             adapter.submitList(pagedList)
             list_characters_progressbar.visibility = View.GONE
         })
